@@ -261,6 +261,10 @@ class RailsTranslateRoutes
           end
         end
 
+        Rails.application.routes.url_helpers.send :define_method, new_helper_name do |*args|
+          send "#{old_name}_#{locale_suffix(I18n.locale)}_#{suffix}", *args
+        end
+
         #add helper to route helper
         ApplicationHelper.send :define_method, new_helper_name do |*args|
           send "#{old_name}_#{locale_suffix(I18n.locale)}_#{suffix}", *args

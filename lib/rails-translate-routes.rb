@@ -162,7 +162,7 @@ class RailsTranslateRoutes
       reset_dictionary
       wanted_locales.each do |locale|
         @dictionary[locale] = Hash.new do |hsh, key|
-          hsh[key] = I18n.translate key, :locale => locale #DISCUSS: caching or no caching (store key and translation in dictionary?)
+          hsh[key] = I18n.translate "routes.#{key}", :default => key, :locale => locale #DISCUSS: caching or no caching (store key and translation in dictionary?)
         end
       end
       @available_locales = @dictionary.keys.map &:to_s

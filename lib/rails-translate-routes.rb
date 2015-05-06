@@ -314,7 +314,7 @@ class RailsTranslateRoutes
       if Rails.version >= '3.2'
         conditions[:path_info] = route.path.spec.to_s
         conditions[:request_method] = parse_request_methods route.verb if route.verb != //
-        conditions[:subdomain] = route.constraints[:subdomain] if route.constraints
+        conditions[:subdomain] = route.constraints[:subdomain] if route.constraints && route.constraints.has_key? :subdomain
       else
         conditions[:path_info] = route.path
         conditions[:request_method] = parse_request_methods route.conditions[:request_method] if route.conditions.has_key? :request_method
